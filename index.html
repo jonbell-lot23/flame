@@ -3,8 +3,7 @@
   <head>
     <title>Socket.IO chat</title>
     <style>
-      .box
-      {
+      .box {
         width: 100px;
         height: 100px;
         background-color: #efefef;
@@ -12,62 +11,51 @@
         padding: 2px;
       }
     </style>
+    <link rel="shortcut icon" id="favicon" href="favicon-default.png" />
   </head>
   <body>
-    
     <div id="lightone" class="box">LIGHT ONE</div>
     <div id="lighttwo" class="box">LIGHT TWO</div>
 
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
-
-      
-
-
-      function randomColor()
-      {
-        var colors = ['red', 'green', 'blue', 'orange', 'yellow'];
+      function randomColor() {
+        var colors = ["red", "green", "blue", "orange", "yellow"];
         return colors[Math.floor(Math.random() * colors.length)];
       }
 
-
-
-
       var socket = io();
 
-      const lightone = document.querySelector('#lightone');      
-      lightone.addEventListener('click', function(e) {        
-          socket.emit('lightone');  
+      const lightone = document.querySelector("#lightone");
+      lightone.addEventListener("click", function (e) {
+        socket.emit("lightone");
       });
 
-      socket.on('lightone', function(msg) {
+      socket.on("lightone", function (msg) {
         // change the color
-        lightone.setAttribute('style', 'background-color: '+randomColor());
+        lightone.setAttribute("style", "background-color: " + randomColor());
 
         // start a timer to turn it off
-        setTimeout(function(){
-          lightone.setAttribute('style', 'background-color: #efefef');
+        setTimeout(function () {
+          lightone.setAttribute("style", "background-color: #efefef");
         }, 20000);
       });
 
-      const lighttwo = document.querySelector('#lighttwo');
-      lighttwo.addEventListener('click', function(e) {        
-          socket.emit('lighttwo');  
+      const lighttwo = document.querySelector("#lighttwo");
+      lighttwo.addEventListener("click", function (e) {
+        socket.emit("lighttwo");
       });
 
-     
-
-      socket.on('lighttwo', function(msg) {        
-         // change the color
-         lighttwo.setAttribute('style', 'background-color: '+randomColor());
+      socket.on("lighttwo", function (msg) {
+        // change the color
+        lighttwo.setAttribute("style", "background-color: " + randomColor());
 
         // start a timer to turn it off
-        setTimeout(function(){
-          lighttwo.setAttribute('style', 'background-color: #efefef');
+        setTimeout(function () {
+          lighttwo.setAttribute("style", "background-color: #efefef");
         }, 20000);
       });
-
     </script>
   </body>
 </html>
